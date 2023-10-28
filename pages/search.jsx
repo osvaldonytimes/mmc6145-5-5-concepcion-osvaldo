@@ -11,14 +11,14 @@ export async function getServerSideProps(context) {
   let recipes = [];
   if (query.q) {
     recipes = await searchRecipes(query.q);
+    return { props: { recipes } };
   }
-  return { props: { recipes } };
+  return { props: {} };
 }
 
 export default function Search({ recipes }) {
   const router = useRouter();
-  const initialQuery = router.query.q || "";
-  const [query, setQuery] = useState(initialQuery);
+  const [query, setQuery] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
