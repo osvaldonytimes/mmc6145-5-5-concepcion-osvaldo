@@ -17,7 +17,8 @@ export async function getServerSideProps(context) {
 
 export default function Search({ recipes }) {
   const router = useRouter();
-  const [query, setQuery] = useState("");
+  const initialQuery = router.query.q || "";
+  const [query, setQuery] = useState(initialQuery);
 
   function handleSubmit(e) {
     e.preventDefault();
